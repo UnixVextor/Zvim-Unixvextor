@@ -1,1 +1,1 @@
-require('unixvextor.core')
+require('unixvextor.config')
