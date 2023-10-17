@@ -9,49 +9,50 @@ return {
 
   config = function()
     require("nvim-tree").setup({
-      sort_by = "name",
-       view = {
-        adaptive_size = false,
-        centralize_selection = true,
-        width = 30,
-        side = "left",
-        preserve_window_proportions = false,
-        number = false,
-        relativenumber = false,
-        signcolumn = "yes",
-        float = {
-          enable = false,
-          quit_on_focus_loss = true,
-          open_win_config = {
-            relative = "editor",
-            border = "rounded",
-            width = 30,
-            height = 30,
-            row = 1,
-            col = 1,
-          },
-        },
+      sort = {
+        sorter = "name",
+        folders_first = true,
+        files_first = false,
       },
+      disable_netrw = true,
+      hijack_netrw = true,
+      hijack_cursor = true,
+    
       renderer = {
-        add_trailing = false,
-        group_empty = false,
-        highlight_git = true,
-        full_name = false,
-        highlight_opened_files = "none",
-        root_folder_label = ":t",
         indent_width = 2,
-        indent_markers = {
-          enable = false,
-          inline_arrows = true,
-          icons = {
-            corner = "└",
-            edge = "│",
-            item = "│",
-            none = " ",
+        icons = {
+          padding = "  ",
+          show = {
+            file = true,
+            folder = true,
+            folder_arrow = true,
+            git = true
           },
-        },
-      },
-    })
+          glyphs = {
+            folder = {
+              default = "",
+              open = "",
+              empty = "",
+              empty_open = "",
+              symlink = "",
+              symlink_open = "",
+              arrow_open = " ",
+              arrow_closed = " ",    
+            },
+            git = {
+              unstaged = "",
+		          staged = "S",
+		          unmerged = "",
+		          renamed = "➜",
+		          deleted = "",
+		          untracked = "U",
+		          ignored = "◌",
+            }
+          }
+        }
+        
+      }
+    }) 
   end,
 }
 

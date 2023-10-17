@@ -16,4 +16,29 @@ require('unixvextor.config.option')
 require('unixvextor.config.globals')
 require('unixvextor.config.keymaps')
 
-require("lazy").setup("unixvextor.plugins")
+local opts = {
+	defaults = {
+		lazy = true,
+	},
+	install = {
+		colorscheme = { "gruvbox" },
+	},
+	rtp = {
+		disabled_plugins = {
+			"gzip",
+			"matchit",
+			"matchparen",
+			"netrw",
+			"netrwPlugin",
+			"tarPlugin",
+			"tohtml",
+			"tutor",
+			"zipPlugin",
+		},
+	},
+	change_detection = {
+		notify = false,
+	},
+}
+
+require("lazy").setup("unixvextor.plugins", opts)
