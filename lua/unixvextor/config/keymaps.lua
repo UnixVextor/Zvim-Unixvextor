@@ -9,8 +9,8 @@ local keymap = vim.keymap.set
 keymap("", "<Space>", "<Nop>", opts)
 
 -- Nvim Tree
-keymap("n", "<leader>e", "<CMD>NvimTreeToggle<CR>", opts)
-keymap("n", "<leader>m", "<CMD>NvimTreeFocus<CR>", opts)
+keymap("n", "<leader>e", "<CMD>Neotree toggle<CR>", opts)
+keymap("n", "<leader>m", "<CMD>Neotree focus<CR>", opts)
 
 -- Normal --
 -- Better window navigation
