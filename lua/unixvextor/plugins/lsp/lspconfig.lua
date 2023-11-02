@@ -12,11 +12,13 @@ return {
    -- import cmp-nvim-lsp plugin
    local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-   local keymap = vim.keymap 
+   local keymap = vim.keymap
+
+   local mason_lspconfig = require("mason-lspconfig")
 
    local opts = { noremap = true, silent = true }
-   local on_attach = function(client, bufnr) 
-       opts.buffer = bufnr
+   local on_attach = function(client, bufnr)
+      opts.buffer = bufnr
 
       -- set keybinds
       opts.desc = "Show LSP references"
@@ -58,7 +60,7 @@ return {
       opts.desc = "Restart LSP"
       keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
     end
-    
+
     -- used to enable autocompletetion (assign to every lsp server config)
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
@@ -67,9 +69,16 @@ return {
     for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = ""})
-    end 
+    end
 
-    -- configure html server
+    mason_lspconfig.setup_handlers {
+      function (server_name)
+       require("lspconfig")[server_name].setup{
+        capabilities = capabilities,
+        on_attach = on_attach,
+       }
+      end
+    }
     -- configure html server
     lspconfig["html"].setup({
       capabilities = capabilities,
@@ -112,7 +121,7 @@ return {
       capabilities = capabilities,
       on_attach = on_attach,
     })
-    
+
        -- configure lua server (with special settings)
     lspconfig["lua_ls"].setup({
       capabilities = capabilities,

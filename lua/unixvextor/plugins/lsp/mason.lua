@@ -18,7 +18,6 @@ return {
 
     mason_lspconfig.setup({
        -- list of server
-       
        ensure_installed = {
          "tsserver",
          "html",
