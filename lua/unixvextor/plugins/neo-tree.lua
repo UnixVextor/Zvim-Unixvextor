@@ -17,14 +17,14 @@ return {
         {text = " ", texthl = "DiagnosticSignInfo"})
       vim.fn.sign_define("DiagnosticSignHint",
         {text = "󰌵", texthl = "DiagnosticSignHint"})
-      
+
       vim.cmd([[ highlight NeoTreeDirectoryIcon guifg=#ffd000 ]])
-      vim.cmd([[ highlight NeoTreeExpander guifg=#3fc5ff ]]) 
+      vim.cmd([[ highlight NeoTreeExpander guifg=#3fc5ff ]])
 
       require("neo-tree").setup({
        source_selector = {
             winbar = true, -- toggle to show selector on winbar
-            statusline = true, -- toggle to show selector on statusline
+            statusline = false, -- toggle to show selector on statusline
              sources = {                                               -- table
             {
               source = "filesystem",                                -- string
@@ -58,12 +58,12 @@ return {
         popup_border_style = "rounded",
         enable_git_status = true,
         enable_diagnostics = true,
-        enable_normal_mode_for_inputs = false, -- Enable normal mode for input dialogs.
+        enable_normal_mode_for_inputs = true, -- Enable normal mode for input dialogs.
         open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
         sort_case_insensitive = true, -- used when sorting files and directories in the tree
         default_component_configs = {
           container = {
-            enable_character_fade = true
+            enable_character_fade =false
           },
           indent = {
             indent_size = 2,
@@ -95,6 +95,9 @@ return {
           name = {
             trailing_slash = false,
             use_git_status_colors = true,
+            indent = {
+              padding = 2,
+            },
             highlight = "NeoTreeFileName",
           },
           git_status = {
@@ -145,8 +148,8 @@ return {
             nowait = true,
           },
           mappings = {
-            ["<space>"] = { 
-                "toggle_node", 
+            ["<space>"] = {
+                "toggle_node",
                 nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use 
             },
             ["<2-LeftMouse>"] = "open",
@@ -167,7 +170,7 @@ return {
             -- ['C'] = 'close_all_subnodes',
             ["z"] = "close_all_nodes",
             --["Z"] = "expand_all_nodes",
-            ["a"] = { 
+            ["a"] = {
               "add",
               -- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
               -- some commands may take optional config options, see `:h neo-tree-mappings` for details
@@ -195,7 +198,7 @@ return {
         filesystem = {
           filtered_items = {
             visible = true, -- when true, they will just be displayed differently than normal items
-            hide_dotfiles = true,
+            hide_dotfiles = false,
             hide_gitignored = false,
             hide_hidden = true, -- only works on Windows for hidden files/directories
             hide_by_name = {
@@ -307,6 +310,6 @@ return {
         }
       })
 
-      vim.cmd([[nnoremap \ :Neotree reveal<cr>]]) 
+      vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
     end,
 }
