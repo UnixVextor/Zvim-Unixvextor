@@ -8,16 +8,7 @@ return {
       "MunifTanjim/nui.nvim",
     },
     config = function()
-      -- If you want icons for diagnostic errors, you'll need to define them somewhere:
-      vim.fn.sign_define("DiagnosticSignError",
-        {text = " ", texthl = "DiagnosticSignError"})
-      vim.fn.sign_define("DiagnosticSignWarn",
-        {text = " ", texthl = "DiagnosticSignWarn"})
-      vim.fn.sign_define("DiagnosticSignInfo",
-        {text = " ", texthl = "DiagnosticSignInfo"})
-      vim.fn.sign_define("DiagnosticSignHint",
-        {text = "󰌵", texthl = "DiagnosticSignHint"})
-
+      local icons = require("unixvextor.icons")
       vim.cmd([[ highlight NeoTreeDirectoryIcon guifg=#ffd000 ]])
       vim.cmd([[ highlight NeoTreeExpander guifg=#3fc5ff ]])
 
@@ -80,12 +71,12 @@ return {
             expander_highlight = "NeoTreeExpander",
           },
           icon = {
-            folder_closed = "󰉋",
-            folder_open = "󰝰",
-            folder_empty = "",
+            folder_closed = icons.ui.Folder,
+            folder_open = icons.ui.FolderOpen,
+            folder_empty = icons.ui.EmptyFolder,
             -- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
             -- then these will never be used.
-            default = "*",
+            default = icons.ui.File,
             highlight = "NeoTreeFileIcon",
          },
           modified = {
