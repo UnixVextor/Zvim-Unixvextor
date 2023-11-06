@@ -1,2 +1,3 @@
 # UnixVextor-Nvim
-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
+
+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
