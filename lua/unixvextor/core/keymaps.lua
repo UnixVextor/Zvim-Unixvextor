@@ -10,6 +10,15 @@ keymap("", "<Space>", "<Nop>", opts)
 keymap("n", "<leader>ee", "<CMD>Neotree toggle<CR>", opts)
 keymap("n", "<leader>eg", "<CMD>Neotree git_status<CR>", opts)
 
+--increment/decrement numbers
+keymap("n", "<leader>+", "<C-a>", opts)
+keymap("n", "<leader>-", "<C-x>", opts)
+
+-- window management
+keymap("n", "<leader>sv", "<C-w>v", opts)
+keymap("n", "<leader>sh", "<C-w>s", opts)
+keymap("n", "<leader>se", "<C-w>=", opts)
+keymap("n", "<leader>sx", "<cmd>close<CR>", opts)
 -- Normal --
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)

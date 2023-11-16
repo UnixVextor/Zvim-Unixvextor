@@ -4,8 +4,10 @@ return {
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
+    "folke/neodev.nvim",
   },
   config = function()
+    require("neodev").setup({})
     -- import lspconfig plugin
     local lspconfig = require("lspconfig")
     require("lspconfig.ui.windows").default_options.border = "single"
@@ -87,6 +89,9 @@ return {
             Lua = {
               diagnostics = {
                 globals = { "vim" },
+              },
+              completion = {
+                callSnippet = "Replace",
               },
             },
             workspace = {
