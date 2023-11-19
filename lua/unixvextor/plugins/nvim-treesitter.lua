@@ -24,7 +24,7 @@ return {
         sync_install = true,
         incremental_selection = {
           enable = true,
-          keymap = {
+          keymaps = {
             init_selection = "<C-space>",
             node_incremental = "<C-space>",
             scope_incremental = "false",
