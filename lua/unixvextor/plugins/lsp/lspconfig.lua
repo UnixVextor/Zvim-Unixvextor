@@ -28,7 +28,9 @@ return {
     })
     local opts = { noremap = true, silent = true }
     local on_attach = function(client, bufnr)
-      navic.attach(client, bufnr)
+      if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
+      end
       opts.buffer = bufnr
 
       -- set keybinds

@@ -6,11 +6,16 @@ return {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     "nvim-tree/nvim-web-devicons",
     "ahmedkhalf/project.nvim",
+    "nvim-telescope/telescope-media-files.nvim",
   },
   config = function()
     local telescope = require("telescope")
     local actions = require("telescope.actions")
     require("project_nvim").setup({})
+    telescope.load_extension("fzf")
+    telescope.load_extension("projects")
+    telescope.load_extension("media_files")
+
     telescope.setup({
       defaults = {
         path_display = { "truncate" },
@@ -23,9 +28,6 @@ return {
         },
       },
     })
-
-    telescope.load_extension("fzf")
-    telescope.load_extension("projects")
 
     -- setkeymap
     local keymap = vim.keymap

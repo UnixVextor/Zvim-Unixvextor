@@ -13,6 +13,14 @@ return {
     comment.setup({
       -- for commenting tsx and jsx files
       prehook = ts_context_commentstring.create_pre_hook(),
+      toggler = {
+        line = "<leader>/",
+        block = "gbc",
+      },
+      opleader = {
+        line = "<leader>/",
+        block = "gb",
+      },
     })
   end,
 }
