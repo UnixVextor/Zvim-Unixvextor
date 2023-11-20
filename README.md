@@ -7,10 +7,10 @@
 **[<kbd> <br> Keymaps <br> </kbd>][Keymaps]**
 **[<kbd> <br> Requirements <br> </kbd>][Requirements]**
 
-[Install]: #installation
-[Uninstall]: #uninstallation
-[Keymaps]: #keymaps
-[Requirements]: #requirements
+[Install]: #-installation
+[Uninstall]: #-uninstallation
+[Keymaps]: #-keymaps
+[Requirements]: #-requirements
 
 </div>
 
