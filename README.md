@@ -16,10 +16,10 @@
 
 ## 🌟 Showcase
 
-![demo1](../nvim/screenshot/demo1.png)
-![demo2](../nvim/screenshot/demo2.png)
-![demo3](,,/nvim/screenshot/demo3.png)
-![demo4](../nvim/screenshot/demo4.png)
+![demo1](https://raw.githubusercontent.com/UnixVextor/UnixVextor-Nvim/master/screenshot/demo1.png?token=GHSAT0AAAAAACGQQJKPLV7TRIOML63L55BSZK3Z7GA)
+![demo2](https://raw.githubusercontent.com/UnixVextor/UnixVextor-Nvim/master/screenshot/demo2.png?token=GHSAT0AAAAAACGQQJKPPPIXHPVMCFHSWPJSZK32AJA)
+![demo3](https://github.com/UnixVextor/UnixVextor-Nvim/blob/master/screenshot/demo3.png?raw=true)
+![demo4](https://github.com/UnixVextor/UnixVextor-Nvim/blob/master/screenshot/demo4.png?raw=true)
 
 ## ⚡️ Requirements
 
