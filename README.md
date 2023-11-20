@@ -10,7 +10,7 @@
 [Install]: #-installation
 [Uninstall]: #-uninstallation
 [Keymaps]: #-keymaps
-[Requirements]: #-requirements
+[Requirements]: #%EF%B8%8F-requirements
 
 </div>
 
