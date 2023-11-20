@@ -16,10 +16,10 @@
 
 ## 🌟 Showcase
 
-![demo1](/home/unixvextor/.config/nvim/screenshot/demo1.png)
-![demo2](/home/unixvextor/.config/nvim/screenshot/demo2.png)
-![demo3](/home/unixvextor/.config/nvim/screenshot/demo3.png)
-![demo4](/home/unixvextor/.config/nvim/screenshot/demo4.png)
+![demo1](../nvim/screenshot/demo1.png)
+![demo2](../nvim/screenshot/demo2.png)
+![demo3](,,/nvim/screenshot/demo3.png)
+![demo4](../nvim/screenshot/demo4.png)
 
 ## ⚡️ Requirements
 
