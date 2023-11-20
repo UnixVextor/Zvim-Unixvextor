@@ -23,7 +23,12 @@
 
 ## ⚡️ Requirements
 
-- [Neovim](https://github.com/neovim/neovim)
+- [Neovim](https://github.com/neovim/neovim) >= 0.7.0
+- [git](https://git-scm.com/)
+- [curl](https://git-scm.com/)
+- [unzip](https://linuxize.com/post/how-to-unzip-files-in-linux/)
+- [tar](https://www.baeldung.com/linux/tar-archive-without-directory-structure#:~:text=The%20Linux%20tar%20command%20is,directory%20structure%20of%20archived%20files.)
+- [gzip](https://linuxize.com/post/gzip-command-in-linux/)
 
 ## 📦 Installation
 
