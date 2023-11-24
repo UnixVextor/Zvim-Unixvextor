@@ -8,6 +8,7 @@ return {
     "rafamadriz/friendly-snippets", -- useful snippets
     "hrsh7th/cmp-emoji", -- source for emoji
     "hrsh7th/cmp-cmdline",
+    "roobert/tailwindcss-colorizer-cmp.nvim",
   },
   config = function()
     local cmp = require("cmp")
@@ -16,6 +17,11 @@ return {
 
     local icons = require("unixvextor.icons")
 
+    local tailwind_colorize = require("tailwindcss-colorizer-cmp")
+
+    tailwind_colorize.setup({
+      color_square_width = 2,
+    })
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     require("luasnip.loaders.from_vscode").lazy_load()
     local check_backspace = function()
@@ -117,7 +123,7 @@ return {
             path = "[Path]",
           })[entry.source.name]
 
-          return vim_item
+          return tailwind_colorize.formatter(entry, vim_item)
         end,
       },
       confirm_opts = {
