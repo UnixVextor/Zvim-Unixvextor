@@ -37,7 +37,6 @@ local options = {
   title = true,
   linebreak = true,
 }
-vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 vim.opt.fillchars = vim.opt.fillchars + "eob: "
 vim.opt.fillchars:append({
   stl = " ",

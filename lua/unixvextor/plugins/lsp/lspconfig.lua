@@ -5,7 +5,6 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
     "folke/neodev.nvim",
-    "SmiteshP/nvim-navic",
   },
   config = function()
     require("neodev").setup({})
@@ -18,19 +17,8 @@ return {
     local keymap = vim.keymap
 
     local mason_lspconfig = require("mason-lspconfig")
-
-    local navic = require("nvim-navic")
-
-    local icons = require("unixvextor.icons")
-    navic.setup({
-      icons = icons.kind,
-      highlight = true,
-    })
     local opts = { noremap = true, silent = true }
     local on_attach = function(client, bufnr)
-      if client.server_capabilities.documentSymbolProvider then
-        navic.attach(client, bufnr)
-      end
       opts.buffer = bufnr
 
       -- set keybinds
