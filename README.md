@@ -30,6 +30,7 @@
 - [tar](https://www.baeldung.com/linux/tar-archive-without-directory-structure#:~:text=The%20Linux%20tar%20command%20is,directory%20structure%20of%20archived%20files.)
 - [gzip](https://linuxize.com/post/gzip-command-in-linux/)
 - [gcc](https://linuxize.com/post/how-to-install-gcc-compiler-on-ubuntu-18-04/)
+- [Node JS](https://nodejs.org/en)
 
 ## 📦 Installation
 
