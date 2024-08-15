@@ -20,7 +20,7 @@ return {
         autotag = {
           enable = true,
         },
-        ensure_installed = "all",
+        ensure_installed = { "lua", "luadoc", "printf", "vim", "vimdoc" },
         sync_install = true,
         incremental_selection = {
           enable = true,
