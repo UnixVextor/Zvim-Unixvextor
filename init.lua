@@ -15,8 +15,8 @@ vim.opt.rtp:prepend(lazypath)
 local lazy_config = require "zvim.configs.lazy"
 
 require("lazy").setup(
- { import = "zvim.plugins" },
- lazy_config
+  { import = "zvim.plugins" },
+  lazy_config
 )
 
 -- load theme

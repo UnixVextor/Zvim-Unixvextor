@@ -1,5 +1,5 @@
 return {
-   "nvim-lua/plenary.nvim",
+  "nvim-lua/plenary.nvim",
 
   {
     "NvChad/base46",
@@ -31,7 +31,25 @@ return {
     end,
   },
 
-  -- git plugins 
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "User FilePost",
+    opts = {
+      indent = { char = "│", highlight = "IblChar" },
+      scope = { char = "│", highlight = "IblScopeChar" },
+    },
+    config = function(_, opts)
+      dofile(vim.g.base46_cache .. "blankline")
+
+      local hooks = require "ibl.hooks"
+      hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
+      require("ibl").setup(opts)
+
+      dofile(vim.g.base46_cache .. "blankline")
+    end,
+  },
+
+  -- git plugins
   {
     "lewis6991/gitsigns.nvim",
     event = "User FilePost",
@@ -40,7 +58,7 @@ return {
     end,
   },
 
-   {
+  {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
@@ -66,16 +84,16 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-    "hrsh7th/cmp-nvim-lsp",
-    { "antosha417/nvim-lsp-file-operations", config = true },
-    "folke/neodev.nvim",
+      "hrsh7th/cmp-nvim-lsp",
+      { "antosha417/nvim-lsp-file-operations", config = true },
+      "folke/neodev.nvim",
     },
     config = function()
       require("zvim.configs.lsp.lspconfigs").defaults()
     end,
   },
 
-    -- load luasnips + cmp related in insert mode only
+  -- load luasnips + cmp related in insert mode only
   {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
@@ -87,7 +105,7 @@ return {
         opts = { history = true, updateevents = "TextChanged,TextChangedI" },
         config = function(_, opts)
           require("luasnip").config.set_config(opts)
-          require ("zvim.configs.lsp.luasnip")
+          require "zvim.configs.lsp.luasnip"
         end,
       },
 
@@ -117,8 +135,48 @@ return {
       },
     },
     opts = function()
-      return require ("zvim.configs.lsp.cmp")
+      return require("zvim.configs.lsp.cmp")
     end,
+  },
+
+
+  {
+    "stevearc/conform.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      local conform = require("conform")
+
+      conform.setup({
+        formatters_by_ft = {
+          javascript = { "prettier" },
+          typescript = { "prettier" },
+          javascriptreact = { "prettier" },
+          typescriptreact = { "prettier" },
+          svelte = { "prettier" },
+          css = { "prettier" },
+          html = { "prettier" },
+          json = { "prettier" },
+          yaml = { "prettier" },
+          markdown = { "prettier" },
+          graphql = { "prettier" },
+          lua = { "stylua" },
+          python = { "isort", "black" },
+        },
+        format_on_save = {
+          lsp_fallback = true,
+          async = false,
+          timeout_ms = 500,
+        },
+      })
+
+      vim.keymap.set({ "n", "v" }, "<leader>mp", function()
+        conform.format({
+          lsp_fallback = true,
+          async = false,
+          timeout_ms = 500,
+        })
+      end, { desc = "Format file or range (in visual mode)" })
+    end
   },
 
   {
@@ -129,7 +187,7 @@ return {
       return require "zvim.configs.telescope"
     end,
     config = function(_, opts)
-      local telescope = require ("telescope")
+      local telescope = require("telescope")
       telescope.setup(opts)
 
       -- load extensions
@@ -141,7 +199,7 @@ return {
 
   {
     "NvChad/nvim-colorizer.lua",
-    event = "User FilePost",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       user_default_options = { names = false },
       filetypes = {
