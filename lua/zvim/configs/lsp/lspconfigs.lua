@@ -21,7 +21,7 @@ M.on_attach = function(_, bufnr)
   map("n", "<leader>D", vim.lsp.buf.type_definition, opts "Go to type definition")
 
   map("n", "<leader>ra", function()
-    require "nvchad.lsp.renamer"()
+    require "nvchad.lsp.renamer" ()
   end, opts "NvRenamer")
 
   map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts "Code action")
@@ -59,25 +59,28 @@ M.defaults = function()
   dofile(vim.g.base46_cache .. "lsp")
   require("nvchad.lsp").diagnostic_config()
   local lspconfig = require("lspconfig")
-
-local servers = {"tsserver",
-				"html",
-				"cssls",
-				"tailwindcss",
-				"lua_ls",
-				"emmet_ls",
-				"prismals",
-				"pyright",
-				"clangd",
-	}
-
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = M.on_attach,
-    on_init = M.on_init,
-    capabilities = M.capabilities,
+  local util = require("lspconfig/util")
+  local servers = {
+    "tsserver",
+    "html",
+    "cssls",
+    "tailwindcss",
+    "lua_ls",
+    "emmet_ls",
+    "prismals",
+    "pyright",
+    "clangd",
+    "docker_compose_language_service",
+    "dockerls"
   }
-end
+
+  for _, lsp in ipairs(servers) do
+    lspconfig[lsp].setup {
+      on_attach = M.on_attach,
+      on_init = M.on_init,
+      capabilities = M.capabilities,
+    }
+  end
 
   lspconfig.lua_ls.setup {
     on_attach = M.on_attach,
@@ -102,6 +105,15 @@ end
         },
       },
     },
+  }
+
+  lspconfig.gopls.setup {
+    on_attach = M.on_attach,
+    capabilities = M.capabilities,
+    on_init = M.on_init,
+    cmd = { "gopls" },
+    filetypes = { "go", "gomod", "gowork", "gotmpl" },
+    root_dir = util.root_pattern("go.work", "go.mod", ".git")
   }
 end
 

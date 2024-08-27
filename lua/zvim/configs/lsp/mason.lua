@@ -11,19 +11,20 @@ local options = {
     },
   },
   ensure_installed = {
-				"tsserver",
-				"html",
-				"cssls",
-				"tailwindcss",
-				"lua_ls",
-				"emmet_ls",
-				"prismals",
-				"pyright",
-				"clangd",
-			},
+    "tsserver",
+    "html",
+    "cssls",
+    "tailwindcss",
+    "lua_ls",
+    "emmet_ls",
+    "prismals",
+    "pyright",
+    "clangd",
+    "gopls",
+  },
 
-			-- auto-isntall configured server (with lspconfig)
-			automatic_installation = true,
+  -- auto-isntall configured server (with lspconfig)
+  automatic_installation = true,
 
   max_concurrent_installers = 10,
 }

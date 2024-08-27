@@ -26,8 +26,7 @@ return {
   {
     "nvim-tree/nvim-web-devicons",
     opts = function()
-      dofile(vim.g.base46_cache .. "devicons")
-      return { override = require "nvchad.icons.devicons" }
+      return require("zvim.configs.nvim-icons")
     end,
   },
 
@@ -161,6 +160,7 @@ return {
           graphql = { "prettier" },
           lua = { "stylua" },
           python = { "isort", "black" },
+          go = { "prettier" },
         },
         format_on_save = {
           lsp_fallback = true,
@@ -216,4 +216,32 @@ return {
       end, 0)
     end,
   },
+
+  {
+    "utilyre/barbecue.nvim",
+    name = "barbecue",
+    version = "*",
+    dependencies = {
+      "SmiteshP/nvim-navic",
+    },
+    opts = {
+      -- configurations go here
+    },
+  },
+
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      lsp = {
+        signature = {
+          enabled = false
+        },
+      }
+    },
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    }
+  }
 }
