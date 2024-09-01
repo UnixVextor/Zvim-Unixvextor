@@ -30,7 +30,7 @@ o.number = true
 o.numberwidth = 2
 o.ruler = false
 o.relativenumber = true
-
+o.shell = 'powershell'
 -- disable nvim intro
 opt.shortmess:append "sI"
 
