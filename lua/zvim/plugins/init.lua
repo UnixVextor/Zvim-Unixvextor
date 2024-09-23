@@ -161,6 +161,7 @@ return {
           lua = { "stylua" },
           python = { "isort", "black" },
           go = { "prettier" },
+          prisma = { "prettier" }
         },
         format_on_save = {
           lsp_fallback = true,
@@ -254,4 +255,10 @@ return {
       require("which-key").setup(opts)
     end,
   },
+
+  {
+    "stevearc/dressing.nvim",
+    event = "VeryLazy",
+  }
+
 }

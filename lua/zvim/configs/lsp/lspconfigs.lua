@@ -20,7 +20,7 @@ M.on_attach = function(_, bufnr)
 
   map("n", "<leader>D", vim.lsp.buf.type_definition, opts "Go to type definition")
 
-  map("n", "<leader>ra", function()
+  map("n", "<F2>", function()
     require "nvchad.lsp.renamer" ()
   end, opts "NvRenamer")
 
@@ -29,7 +29,7 @@ M.on_attach = function(_, bufnr)
 end
 
 -- disable semanticTokens
-M.on_init = function(client, _)
+M.tn_init = function(client, _)
   if client.supports_method "textDocument/semanticTokens" then
     client.server_capabilities.semanticTokensProvider = nil
   end
