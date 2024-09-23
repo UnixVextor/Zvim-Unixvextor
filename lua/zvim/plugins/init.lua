@@ -256,9 +256,9 @@ return {
     end,
   },
 
-  {
-    "stevearc/dressing.nvim",
-    event = "VeryLazy",
-  }
+  -- {
+  --   "stevearc/dressing.nvim",
+  --   event = "VeryLazy",
+  -- }
 
 }
