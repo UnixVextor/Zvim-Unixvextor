@@ -11,10 +11,15 @@ return {
   {
     "NvChad/ui",
     lazy = false,
-    build = function()
-      dofile(vim.fn.stdpath "data" .. "/lazy/ui/lua/nvchad_feedback.lua")()
+    config = function()
+      require("nvchad")
     end,
   },
+
+  { "nvchad/volt",  lazy = true },
+  { "nvchad/menu",  lazy = true },
+  { "nvchad/minty", cmd = { "Huefy", "Shades" } },
+
   {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
@@ -40,7 +45,7 @@ return {
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "blankline")
 
-      local hooks = require "ibl.hooks"
+      local hooks = require("ibl.hooks")
       hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
       require("ibl").setup(opts)
 
@@ -63,7 +68,7 @@ return {
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
     opts = function()
-      return require "zvim.configs.nvim-treesitter"
+      return require("zvim.configs.nvim-treesitter")
     end,
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
@@ -71,14 +76,6 @@ return {
   },
 
   -- lsp stuff
-  {
-    "williamboman/mason.nvim",
-    cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
-    opts = function()
-      return require "zvim.configs.lsp.mason"
-    end,
-  },
-
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
@@ -88,7 +85,26 @@ return {
       "folke/neodev.nvim",
     },
     config = function()
+      require("neodev").setup()
       require("zvim.configs.lsp.lspconfigs").defaults()
+    end,
+  },
+
+
+  {
+    "williamboman/mason.nvim",
+    cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "williamboman/mason-lspconfig.nvim",
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
+    },
+    config = function()
+      local mason_opts = require("zvim.configs.lsp.mason")
+      local mason_lspconfig = require("mason-lspconfig")
+      require("mason").setup(mason_opts.options)
+      mason_lspconfig.setup(mason_opts.mason_lspconfigs)
+      require("mason-tool-installer").setup(mason_opts.opts_formatter)
     end,
   },
 
@@ -104,7 +120,7 @@ return {
         opts = { history = true, updateevents = "TextChanged,TextChangedI" },
         config = function(_, opts)
           require("luasnip").config.set_config(opts)
-          require "zvim.configs.lsp.luasnip"
+          require("zvim.configs.lsp.luasnip")
         end,
       },
 
@@ -119,7 +135,7 @@ return {
           require("nvim-autopairs").setup(opts)
 
           -- setup cmp for autopairs
-          local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+          local cmp_autopairs = require("nvim-autopairs.completion.cmp")
           require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
         end,
       },
@@ -138,37 +154,13 @@ return {
     end,
   },
 
-
   {
     "stevearc/conform.nvim",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       local conform = require("conform")
-
-      conform.setup({
-        formatters_by_ft = {
-          javascript = { "prettier" },
-          typescript = { "prettier" },
-          javascriptreact = { "prettier" },
-          typescriptreact = { "prettier" },
-          svelte = { "prettier" },
-          css = { "prettier" },
-          html = { "prettier" },
-          json = { "prettier" },
-          yaml = { "prettier" },
-          markdown = { "prettier" },
-          graphql = { "prettier" },
-          lua = { "stylua" },
-          python = { "isort", "black" },
-          go = { "prettier" },
-          prisma = { "prettier" }
-        },
-        format_on_save = {
-          lsp_fallback = true,
-          async = false,
-          timeout_ms = 500,
-        },
-      })
+      local opts = require("zvim.configs.lsp.conform")
+      conform.setup(opts)
 
       vim.keymap.set({ "n", "v" }, "<leader>mp", function()
         conform.format({
@@ -177,7 +169,7 @@ return {
           timeout_ms = 500,
         })
       end, { desc = "Format file or range (in visual mode)" })
-    end
+    end,
   },
 
   {
@@ -185,7 +177,7 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     cmd = "Telescope",
     opts = function()
-      return require "zvim.configs.telescope"
+      return require("zvim.configs.telescope")
     end,
     config = function(_, opts)
       local telescope = require("telescope")
@@ -199,34 +191,11 @@ return {
   },
 
   {
-    "NvChad/nvim-colorizer.lua",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = {
-      user_default_options = { names = false },
-      filetypes = {
-        "*",
-        "!lazy",
-      },
-    },
-    config = function(_, opts)
-      require("colorizer").setup(opts)
-
-      -- execute colorizer as soon as possible
-      vim.defer_fn(function()
-        require("colorizer").attach_to_buffer(0)
-      end, 0)
-    end,
-  },
-
-  {
     "utilyre/barbecue.nvim",
     name = "barbecue",
     version = "*",
     dependencies = {
       "SmiteshP/nvim-navic",
-    },
-    opts = {
-      -- configurations go here
     },
   },
 
@@ -236,14 +205,14 @@ return {
     opts = {
       lsp = {
         signature = {
-          enabled = false
+          enabled = false,
         },
-      }
+      },
     },
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
-    }
+    },
   },
 
   {
@@ -255,10 +224,4 @@ return {
       require("which-key").setup(opts)
     end,
   },
-
-  -- {
-  --   "stevearc/dressing.nvim",
-  --   event = "VeryLazy",
-  -- }
-
 }

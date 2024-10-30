@@ -1,7 +1,8 @@
 dofile(vim.g.base46_cache .. "mason")
+local M = {}
 
-local options = {
-  PATH = "skip",
+M.options = {
+  PATH = "prepend",
 
   ui = {
     icons = {
@@ -10,8 +11,13 @@ local options = {
       package_uninstalled = " ",
     },
   },
+
+  max_concurrent_installers = 10,
+}
+
+M.mason_lspconfigs = {
   ensure_installed = {
-    "tsserver",
+    "ts_ls",
     "html",
     "cssls",
     "tailwindcss",
@@ -22,11 +28,19 @@ local options = {
     "clangd",
     "gopls",
   },
-
-  -- auto-isntall configured server (with lspconfig)
   automatic_installation = true,
-
-  max_concurrent_installers = 10,
 }
 
-return options
+M.opts_formatter = {
+  ensure_installed = {
+    "prettier",
+    "stylua", -- lua formatter
+    "isort",  -- python formatter
+    "black",  -- python formatter
+    "pylint",
+    "eslint_d",
+  },
+  automatic_installation = true,
+}
+
+return M
