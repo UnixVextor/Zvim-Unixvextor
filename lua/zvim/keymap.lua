@@ -77,7 +77,7 @@ map({ "n", "t" }, "<A-i>", function()
 end, { desc = "terminal toggle floating term" })
 
 map("n", "<C-d>", "<cmd>Shades<CR>", { desc = "Color Shades" })
-map("n", "<C-g>", "<cmd>Huefy<CR>", { desc = "Color pick" })
+map("n", "<leader>p", "<cmd>Huefy<CR>", { desc = "Color pick" })
 
 map({ "n" }, "<leader>m", function()
   local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
